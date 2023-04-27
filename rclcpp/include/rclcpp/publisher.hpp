@@ -504,6 +504,7 @@ protected:
   void
   do_intra_process_publish(std::unique_ptr<PublishedType, PublishedTypeDeleter> msg)
   {
+    TRACEPOINT(rcl_publish, publisher_handle_.get(), static_cast<const void *>(&msg));
     auto ipm = weak_ipm_.lock();
     if (!ipm) {
       throw std::runtime_error(
@@ -522,6 +523,7 @@ protected:
   void
   do_intra_process_ros_message_publish(std::unique_ptr<ROSMessageType, ROSMessageTypeDeleter> msg)
   {
+    TRACEPOINT(rcl_publish, publisher_handle_.get(), static_cast<const void *>(&msg));
     auto ipm = weak_ipm_.lock();
     if (!ipm) {
       throw std::runtime_error(
@@ -541,6 +543,7 @@ protected:
   do_intra_process_ros_message_publish_and_return_shared(
     std::unique_ptr<ROSMessageType, ROSMessageTypeDeleter> msg)
   {
+    TRACEPOINT(rcl_publish, publisher_handle_.get(), static_cast<const void *>(&msg));
     auto ipm = weak_ipm_.lock();
     if (!ipm) {
       throw std::runtime_error(
